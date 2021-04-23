@@ -23,7 +23,7 @@ jobs:
         uses: google-github-actions/upload-cloud-storage@main
         with:
            credentials: ${{ secrets.gcp_credentials }}
-           path: ${{ github.workspace }}/test2/*
+           path: ${{ github.workspace }}/test2/*.*
            destination: bkt_de_pe_dropzone_01/test
       
       - run: echo "🍏 This job's status is ${{ job.status }}."
