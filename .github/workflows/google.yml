@@ -1,4 +1,4 @@
-name: Java CI with Maven Test
+name: Java CI with GCP Test
 
 on:
   push:
@@ -18,10 +18,6 @@ jobs:
           mkdir -p test
           touch test/test2.txt
       - name: Build dist
-        run: |-
-          npm install
-          npm run build
-      - uses: google-github-actions/setup-gcloud@master
         with:
           service_account_email: ${{ secrets.UPLOAD_CLOUD_STORAGE_GCP_SA_EMAIL }}
           service_account_key: ${{ secrets.UPLOAD_CLOUD_STORAGE_GCP_SA_KEY_B64 }}
@@ -32,6 +28,6 @@ jobs:
         uses: ./
         with:
           path: ./test/test2.txt
-          destination: ${{ secrets.UPLOAD_CLOUD_STORAGE_TEST_BUCKET }}/testprefix
+          destination: gs://bkt_de_pe_dropzone_01/test/
       - name: get output
         run: echo '${{ steps.upload.outputs.uploaded }}'
