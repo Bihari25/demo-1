@@ -17,5 +17,6 @@ jobs:
           touch ${{ github.workspace }}/test2/test1.txt
           touch ${{ github.workspace }}/test2/test2.txt
           ls ${{ github.workspace }}
+          ls ${{ github.workspace }}/test2
       
       - run: echo "🍏 This job's status is ${{ job.status }}."
