@@ -13,9 +13,9 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
         run: |
-          mkdir -p ${{ github.workspace }}/test
-          touch ${{ github.workspace }}/test/test1.txt
-          touch ${{ github.workspace }}/test/test2.txt
+          mkdir -p ${{ github.workspace }}/test2
+          touch ${{ github.workspace }}/test2/test1.txt
+          touch ${{ github.workspace }}/test2/test2.txt
           ls ${{ github.workspace }}
       
       - run: echo "🍏 This job's status is ${{ job.status }}."
