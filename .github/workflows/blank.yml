@@ -19,7 +19,7 @@ jobs:
           ls ${{ github.workspace }}
           ls ${{ github.workspace }}/test2
           
-      - id: upload-file into gcp
+      - id: upload-file-into-gcp
         uses: google-github-actions/upload-cloud-storage@main
         with:
            credentials: ${{ secrets.gcp_credentials }}
