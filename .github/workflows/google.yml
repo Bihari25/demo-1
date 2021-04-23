@@ -23,6 +23,6 @@ jobs:
         uses: google-github-actions/upload-cloud-storage@main
         with:
            path: ${{ github.workspace }}/test2/test2.txt
-           destination: gs://bkt_de_pe_dropzone_01/test
+           destination: bkt_de_pe_dropzone_01/test
       
       - run: echo "🍏 This job's status is ${{ job.status }}."
