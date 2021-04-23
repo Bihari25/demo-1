@@ -1,0 +1,37 @@
+name: Java CI with Maven Test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  gcloud:
+    name: with setup-gcloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: vjaiswa8/demo-1@master
+      - id: build
+        name: make temp folder and file
+        run: |
+          mkdir -p test
+          touch test/test2.txt
+      - name: Build dist
+        run: |-
+          npm install
+          npm run build
+      - uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_email: ${{ secrets.UPLOAD_CLOUD_STORAGE_GCP_SA_EMAIL }}
+          service_account_key: ${{ secrets.UPLOAD_CLOUD_STORAGE_GCP_SA_KEY_B64 }}
+          export_default_credentials: true
+      
+      - id: upload
+        name: upload file
+        uses: ./
+        with:
+          path: ./test/test2.txt
+          destination: ${{ secrets.UPLOAD_CLOUD_STORAGE_TEST_BUCKET }}/testprefix
+      - name: get output
+        run: echo '${{ steps.upload.outputs.uploaded }}'
