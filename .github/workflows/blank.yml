@@ -1,4 +1,4 @@
-name: GitHub Actions Demo
+name: GitHub Actions GCP Demo
 on: [push]
 jobs:
   Explore-GitHub-Actions:
@@ -19,11 +19,11 @@ jobs:
           ls ${{ github.workspace }}
           ls ${{ github.workspace }}/test2
           
-      - id: upload-file
+      - id: upload-file into gcp
         uses: google-github-actions/upload-cloud-storage@main
         with:
            credentials: ${{ secrets.gcp_credentials }}
-           path: ${{ github.workspace }}/test2/test2.txt
+           path: ${{ github.workspace }}/test2/test1.txt
            destination: bkt_de_pe_dropzone_01/test
       
       - run: echo "🍏 This job's status is ${{ job.status }}."
