@@ -26,3 +26,4 @@ jobs:
            destination: bkt_de_pe_dropzone_01/test
       
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      
