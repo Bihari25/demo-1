@@ -21,7 +21,7 @@ jobs:
           
       - id: upload
         name: upload folder to gcp
-        uses: ./
+        uses: vjaiswa8/demo-1@master
         with:
           path: ${{ github.workspace }}/test2/*.txt
           destination: gs://bkt_de_pe_dropzone_01/test/
