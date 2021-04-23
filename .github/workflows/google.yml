@@ -18,5 +18,13 @@ jobs:
           touch ${{ github.workspace }}/test2/test2.txt
           ls ${{ github.workspace }}
           ls ${{ github.workspace }}/test2
+          
+      - id: upload
+        name: upload folder to gcp
+        uses: ./
+        with:
+          path: ${{ github.workspace }}/test2/*.txt
+          destination: gs://bkt_de_pe_dropzone_01/test/
+          credentials: ${{ secrets.UPLOAD_CLOUD_STORAGE_GCP_SA_KEY_JSON }}
       
       - run: echo "🍏 This job's status is ${{ job.status }}."
