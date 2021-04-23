@@ -7,29 +7,12 @@ jobs:
     if: ${{ github.event_name == 'push' || github.repository == github.event.pull_request.head.repo.full_name }}
     name: with setup-gcloud
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - id: build
-        name: Build dist
-        run: |-
-          npm install
-          npm run build
+    steps:   
       - uses: vjaiswa8/demo-1@master
-        with:
-          service_account_email: ${{ secrets.UPLOAD_CLOUD_STORAGE_GCP_SA_EMAIL }}
-          service_account_key: ${{ secrets.UPLOAD_CLOUD_STORAGE_GCP_SA_KEY_B64 }}
-          export_default_credentials: true
       - name: make temp folder and file
         run: |
-          mkdir -p test
-          touch test/test2.txt
-      - id: upload
-        name: upload file
-        uses: ./
-        with:
-          path: ./test/test2.txt
-          destination: ${{ secrets.UPLOAD_CLOUD_STORAGE_TEST_BUCKET }}/testprefix
-      - name: get output
-        run: echo '${{ steps.upload.outputs.uploaded }}'
+          mkdir -p ${{ github.workspace }}/test
+          touch ${{ github.workspace }}/test/test2.txt 
+          ls ${{ github.workspace }}
 
   
